@@ -39,19 +39,19 @@ const getEndpoint = (chain) => {
             break;
     }
 }
-
+// BLAIREE
 const fetchNFTs = async (owner, setNFTs, chain, contractAddress) => {
     let endpoint = getEndpoint(chain)
-    // const data = await getAddressNFTs(endpoint, owner, contractAddress)
-    // if (data.ownedNfts.length) {
-    //     const NFTs = await getNFTsMetadata(data.ownedNfts, endpoint)
-    //     console.log("NFTS metadata", NFTs)
-    //     let fullfilledNFTs = NFTs.filter(NFT => NFT.status == "fulfilled")
-    //     console.log("NFTS", fullfilledNFTs)
-    //     setNFTs(fullfilledNFTs)
-    // } else {
-    //     setNFTs(null)
-    // }
+    const data = await getAddressNFTs(endpoint, owner, contractAddress)
+    if (data.ownedNfts.length) {
+        const NFTs = await getNFTsMetadata(data.ownedNfts, endpoint)
+        console.log("NFTS metadata", NFTs)
+        let fullfilledNFTs = NFTs.filter(NFT => NFT.status == "fulfilled")
+        console.log("NFTS", fullfilledNFTs)
+        setNFTs(NFTs)
+    } else {
+        setNFTs(null)
+    }
 
 }
 
@@ -61,8 +61,9 @@ const getNFTsMetadata = async (NFTS, endpoint) => {
         const metadata = await fetch(`${endpoint}/getNFTMetadata?contractAddress=${NFT.contract.address}&tokenId=${NFT.id.tokenId}`,).then(data => data.json())
         let image;
         console.log("metadata", metadata)
-        if (metadata.media[0].uri.gateway.length) {
-            image = metadata.media[0].uri.gateway
+        if (metadata.metadata.image) {
+            image = metadata.metadata.image
+            console.log("got image", image);
         } else {
             image = "https://via.placeholder.com/500"
         }
@@ -70,7 +71,7 @@ const getNFTsMetadata = async (NFTS, endpoint) => {
         return {
             id: NFT.id.tokenId,
             contractAddress: NFT.contract.address,
-            image,
+            image: image,
             title: metadata.metadata.name,
             description: metadata.metadata.description,
             attributes: metadata.metadata.attributes

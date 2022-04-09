@@ -7,7 +7,7 @@ const Login = () => {
     return (
         <div className="alchemy h-screen flex flex-col items-center justify-center gap-2 ">
             <h1 className="text-white text-3xl -mt-24 font-bold mb-12">
-                Login
+                Connect your wallet
             </h1>
             {data.connectors.map((x) => (
                 <div className="w-2/6">
@@ -22,10 +22,6 @@ const Login = () => {
 
             ))}
             {error && <div>{error?.message ?? 'Failed to connect'}</div>}
-            <div className="text-white text-center mt-8 ">
-                <p>or continue without</p>
-                <Link className="font-bold" to={"/explore"}> logging in</Link>
-            </div>
 
         </div>
     )

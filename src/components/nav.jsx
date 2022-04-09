@@ -36,7 +36,7 @@ const Nav = () => {
             </div>
             <Routes>
                 <Route path="/" element={<Login />} />
-                {/*<Route path="/explore" element={<Explore />} />*/}
+                <Route path="/explore" element={<Explore />} />
                 <Route path="/myprofile" element={<MyProfile />} />
             </Routes>
 

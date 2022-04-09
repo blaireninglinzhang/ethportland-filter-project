@@ -5,7 +5,7 @@ const ChainSelector = ({setBlockchain, chain}) => {
                 <input onChange={(e) => setBlockchain(e.target.value)} className='mr-1' type="radio" name='blockchain' value="Ethereum" checked={chain == "Ethereum"} />
                 <label htmlFor="Eth">Ethereum</label>
             </div>
-            <div>
+            {/* <div>
                 <input onChange={(e) => setBlockchain(e.target.value)} className='mr-1' type="radio" name='blockchain' value="Rinkeby" checked={chain == "Rinkeby"} disabled />
                 <label htmlFor="Rinkeby">Rinkeby</label>
             </div>
@@ -17,7 +17,7 @@ const ChainSelector = ({setBlockchain, chain}) => {
             <div>
                 <input onChange={(e) => setBlockchain(e.target.value)} className='mr-1' type="radio" name='blockchain' value="Mumbai" checked={chain == "Mumbai"} />
                 <label htmlFor="Mumbai">Mumbai</label>
-            </div>
+            </div> */}
         </div>
     )
 }
